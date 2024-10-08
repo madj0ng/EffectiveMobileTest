@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/searchFragment"
+        android:title="@string/menu_search" />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:title="@string/menu_favorite" />
+    <item
+        android:id="@+id/responseFragment"
+        android:title="@string/menu_response" />
+    <item
+        android:id="@+id/messagesFragment"
+        android:title="@string/menu_message" />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/menu_profile" />
+</menu>

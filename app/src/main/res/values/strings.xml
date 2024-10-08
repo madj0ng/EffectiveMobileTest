@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EffectiveMobileTest</string>
+
+    <string name="menu_search">Поиск</string>
+    <string name="menu_favorite">Избранное</string>
+    <string name="menu_response">Отклик</string>
+    <string name="menu_message">Сообщения</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    Д
+</resources>
