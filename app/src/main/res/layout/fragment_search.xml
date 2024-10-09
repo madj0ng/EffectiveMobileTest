@@ -55,14 +55,33 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/dim_40dp"
         android:layout_marginEnd="@dimen/dim_8dp"
-        android:drawableStart="@drawable/ic_search_default"
-        android:drawablePadding="@dimen/dim_8dp"
         android:hint="@string/search_hint_text"
-        android:paddingStart="@dimen/dim_8dp"
+        android:paddingStart="@dimen/dim_40dp"
         android:paddingEnd="@dimen/dim_8dp"
         app:layout_constraintEnd_toStartOf="@+id/ivFilter"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/top_guideline" />
+
+    <ImageView
+        android:id="@+id/ivSearchButton"
+        android:layout_width="@dimen/dim_40dp"
+        android:layout_height="@dimen/dim_40dp"
+        android:padding="@dimen/dim_8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearch"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/etSearch"
+        app:srcCompat="@drawable/ic_search_default" />
+
+    <ImageView
+        android:id="@+id/ivBackButton"
+        android:layout_width="@dimen/dim_40dp"
+        android:layout_height="@dimen/dim_40dp"
+        android:padding="@dimen/dim_8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearch"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/etSearch"
+        app:srcCompat="@drawable/ic_left_arrow_default" />
 
     <ImageView
         android:id="@+id/ivFilter"
@@ -123,7 +142,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_32dp"
-        android:text="@string/vacancies_for_you"
+        android:text="@string/title_vacancies_for_you"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/rvOffers" />

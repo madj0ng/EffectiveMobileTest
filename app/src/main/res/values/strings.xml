@@ -8,7 +8,8 @@
     <string name="menu_profile">Профиль</string>
 
     <string name="search_hint_text">Должность, ключевые слова</string>
-    <string name="vacancies_for_you">Вакансии для вас</string>
+    <string name="title_vacancies_for_you">Вакансии для вас</string>
+    <string name="title_favorite">Избранное</string>
     <string name="count_vacancies_inclined">%1$d ваканси%1$s</string>
     <string name="button_count_vacancies_inclined">Еще %1$d ваканси%1$s</string>
     <string name="button_respond">Откликнуться</string>
