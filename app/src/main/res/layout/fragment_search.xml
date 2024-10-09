@@ -1,18 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimaryDark"
     tools:context=".ui.SearchFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/dim_54dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/offersGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="rvOffers, tvVacanciesTitle" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/vacansiesGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tvTopListCount, tvTopListSort, tvTopListSortArrows, ivVacanciesButton" />
+
+    <EditText
+        android:id="@+id/etSearch"
+        style="@style/SearchEditText"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_40dp"
+        android:layout_marginEnd="@dimen/dim_8dp"
+        android:drawableStart="@drawable/ic_search_default"
+        android:drawablePadding="@dimen/dim_8dp"
+        android:hint="@string/search_hint_text"
+        android:paddingStart="@dimen/dim_8dp"
+        android:paddingEnd="@dimen/dim_8dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivFilter"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/top_guideline" />
+
+    <ImageView
+        android:id="@+id/ivFilter"
+        style="@style/SmallButtom"
+        android:layout_width="@dimen/dim_40dp"
+        android:layout_height="@dimen/dim_40dp"
+        android:padding="@dimen/dim_8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearch"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/etSearch"
+        app:layout_constraintTop_toTopOf="@+id/etSearch"
+        app:srcCompat="@drawable/ic_filter_default"
+        app:tint="@color/gray3" />
+
     <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="Поиск"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:id="@+id/tvTopListCount"
+        style="@style/Text1White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:text="@string/count_vacancies_inclined"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch" />
+
+    <TextView
+        android:id="@+id/tvTopListSort"
+        style="@style/Text1Blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/by_correspondence"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTopListCount"
+        app:layout_constraintEnd_toStartOf="@+id/tvTopListSortArrows" />
+
+    <ImageView
+        android:id="@+id/tvTopListSortArrows"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrows_default"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTopListSort"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:tint="@color/blue" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOffers"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_120dp"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tvVacanciesTitle"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopListCount"
+        tools:listitem="@layout/offers_item" />
+
+    <TextView
+        android:id="@+id/tvVacanciesTitle"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_32dp"
+        android:text="@string/vacancies_for_you"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/rvOffers" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVacancies"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dim_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/ivVacanciesButton"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvVacanciesTitle"
+        tools:listitem="@layout/vacansies_item" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ivVacanciesButton"
+        style="@style/VacanciesButtom"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginTop="@dimen/dim_24dp"
+        android:layout_marginBottom="@dimen/dim_8dp"
+        android:text="@string/button_count_vacancies_inclined"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

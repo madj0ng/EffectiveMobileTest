@@ -6,7 +6,17 @@
     <string name="menu_response">Отклик</string>
     <string name="menu_message">Сообщения</string>
     <string name="menu_profile">Профиль</string>
+
+    <string name="search_hint_text">Должность, ключевые слова</string>
+    <string name="vacancies_for_you">Вакансии для вас</string>
+    <string name="count_vacancies_inclined">%1$d ваканси%1$s</string>
+    <string name="button_count_vacancies_inclined">Еще %1$d ваканси%1$s</string>
+    <string name="button_respond">Откликнуться</string>
+    <string name="by_correspondence">По соответствию</string>
+
+    <string name="published_date">Опубликовано %1$s</string>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    Д
+
 </resources>
