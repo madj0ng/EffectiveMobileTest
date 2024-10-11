@@ -10,12 +10,14 @@ import ru.madj0ng.effectivemobiletest.data.dto.VacanciesDto
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
 import ru.madj0ng.effectivemobiletest.domain.models.VacanciesRequestParam
 import ru.madj0ng.effectivemobiletest.domain.offers.OffersUseCase
+import ru.madj0ng.effectivemobiletest.domain.sharing.SharingUseCase
 import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesUseCase
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
 
 class SearchViewModel(
     private val offers: OffersUseCase,
-    private val vacancies: VacanciesUseCase
+    private val vacancies: VacanciesUseCase,
+    private val sharing: SharingUseCase
 ) : ViewModel() {
 
     private val offersData = MutableLiveData<List<OfferDto>>()
@@ -40,6 +42,10 @@ class SearchViewModel(
     fun backPage() {
         setVacancies(VacanciesRequestParam(defaultMax))
         setDefault(false)
+    }
+
+    fun sharingOffer(urlString: String) {
+        sharing.openLink(urlString)
     }
 
     private fun setDefault(isDefault: Boolean) {

@@ -47,7 +47,7 @@ class SearchFragment : Fragment() {
         }
 
         offersAdapter = OffersAdapter {
-//                findNavController().navigate(R.id.action_searchFragment_to_vacancyDetailFragment)
+            viewModel.sharingOffer(it)
         }
 
         binding.rvOffers.apply {

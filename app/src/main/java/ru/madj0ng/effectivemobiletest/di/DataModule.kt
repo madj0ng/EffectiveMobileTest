@@ -1,5 +1,6 @@
 package ru.madj0ng.effectivemobiletest.di
 
+import android.content.Intent
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -28,4 +29,6 @@ val dataModule = module {
             api = get()
         )
     }
+
+    factory { Intent() }
 }

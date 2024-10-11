@@ -46,19 +46,42 @@ class OffersAdapter(
             when (offer.id) {
                 OffersTypes.NEAR_VACANCIES.id -> binding.ivOffer.apply {
                     setImageResource(OffersTypes.NEAR_VACANCIES.icon)
-                    setBackgroundTintList(itemView.resources.getColorStateList(R.color.dark_blue, context.getTheme()))
+                    setBackgroundTintList(
+                        itemView.resources.getColorStateList(
+                            R.color.dark_blue,
+                            context.getTheme()
+                        )
+                    )
                 }
+
                 OffersTypes.LEVEL_UP_RESUME.id -> binding.ivOffer.apply {
                     setImageResource(OffersTypes.LEVEL_UP_RESUME.icon)
-                    setBackgroundTintList(itemView.resources.getColorStateList(R.color.dark_green, context.getTheme()))
+                    setBackgroundTintList(
+                        itemView.resources.getColorStateList(
+                            R.color.dark_green,
+                            context.getTheme()
+                        )
+                    )
                 }
+
                 OffersTypes.TEMPORARY_JOB.id -> binding.ivOffer.apply {
                     setImageResource(OffersTypes.TEMPORARY_JOB.icon)
-                    setBackgroundTintList(itemView.resources.getColorStateList(R.color.dark_green, context.getTheme()))
+                    setBackgroundTintList(
+                        itemView.resources.getColorStateList(
+                            R.color.dark_green,
+                            context.getTheme()
+                        )
+                    )
                 }
+
                 else -> binding.ivOffer.apply {
                     setImageDrawable(null)
-                    setBackgroundTintList(itemView.resources.getColorStateList(R.color.dark_blue, context.getTheme()))
+                    setBackgroundTintList(
+                        itemView.resources.getColorStateList(
+                            R.color.dark_blue,
+                            context.getTheme()
+                        )
+                    )
                 }
             }
             binding.tvOffer.text = offer.title.trim()
@@ -69,10 +92,12 @@ class OffersAdapter(
             } else {
                 binding.tvOffer.maxLines = max2
             }
+
+            itemView.setOnClickListener { clickListener.onItemClick(offer.link) }
         }
     }
 
     fun interface OnClickListener {
-        fun onItemClick(buttonText: String)
+        fun onItemClick(urlString: String)
     }
 }
