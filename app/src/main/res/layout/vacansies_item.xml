@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ListItem"
-    android:layout_marginTop="@dimen/dim_16dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dim_16dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -21,15 +21,38 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="@dimen/dim_16dp" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/textsBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="ivFavorite" />
+
     <TextView
         android:id="@+id/tvViewers"
         style="@style/Text1Green"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_16dp"
-        app:layout_constraintEnd_toStartOf="@+id/ivFavorite"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_guideline"
         tools:text="Сейчас просматривает 1 человек" />
 
     <ImageView
@@ -37,10 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim_16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvViewers"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        app:layout_constraintStart_toEndOf="@+id/tvViewers"
-        app:layout_constraintTop_toTopOf="@+id/tvViewers"
+        app:layout_constraintTop_toBottomOf="@id/top_guideline"
         app:srcCompat="@drawable/ic_favorite_default" />
 
     <TextView
@@ -48,21 +69,35 @@
         style="@style/Title3White"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        app:layout_constraintBottom_toTopOf="@id/tvSalary"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@id/tvViewers"
         tools:text="UI/UX Designer" />
+
+    <TextView
+        android:id="@+id/tvSalary"
+        style="@style/Title2White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTown"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="1500-2900 Br" />
 
     <TextView
         android:id="@+id/tvTown"
         style="@style/Text1White"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        android:layout_marginBottom="@dimen/dim_8dp"
+        app:layout_constraintBottom_toTopOf="@id/tvCompany"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvSalary"
         tools:text="Минск" />
 
     <TextView
@@ -70,8 +105,9 @@
         style="@style/Text1White"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_8dp"
+        android:layout_marginBottom="@dimen/dim_10dp"
         app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tvExperience"
         app:layout_constraintEnd_toStartOf="@+id/ivCompanyClock"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -85,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim_8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvCompany"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/tvCompany"
         app:layout_constraintTop_toTopOf="@+id/tvCompany"
         app:srcCompat="@drawable/ic_clock_default" />
@@ -106,8 +142,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim_8dp"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        app:layout_constraintBottom_toTopOf="@id/tvPublishedDate"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/ivExperienceImage"
         app:layout_constraintTop_toBottomOf="@id/tvCompany"
         tools:text="Опыт от 1 года до 3 лет" />
@@ -117,8 +154,9 @@
         style="@style/Text1Gray3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        app:layout_constraintBottom_toTopOf="@id/ivRespond"
+        app:layout_constraintEnd_toStartOf="@+id/textsBarrier"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@id/tvExperience"
         tools:text="Опубликовано 16 февраля" />
@@ -128,10 +166,9 @@
         style="@style/RespondButton"
         android:layout_width="0dp"
         android:layout_height="@dimen/dim_32dp"
-        android:layout_marginTop="@dimen/dim_16dp"
-        android:layout_marginBottom="@dimen/dim_16dp"
         android:text="@string/button_respond"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvPublishedDate" />

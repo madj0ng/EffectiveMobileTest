@@ -13,4 +13,5 @@
     </style>
 
     <style name="Theme.EffectiveMobileTest" parent="Base.Theme.EffectiveMobileTest" />
+
 </resources>

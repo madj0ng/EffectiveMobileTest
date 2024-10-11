@@ -14,6 +14,9 @@ fragment = "1.8.4"
 # Room
 room = "2.6.1"
 
+# Network
+retrofit = "2.11.0"
+
 # Dependency Injection
 koin = "3.5.0"
 
@@ -50,6 +53,10 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-common = { group = "androidx.room", name = "room-common", version.ref = "room" }
+
+# Network
+retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 # Dependency Injection
 koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }

@@ -8,7 +8,11 @@
         android:id="@+id/searchFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_vacancyDetailFragment"
+            app:destination="@id/vacancyDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/responseFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.ResponseFragment"
@@ -18,7 +22,11 @@
         android:id="@+id/favoriteFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_vacancyDetailFragment"
+            app:destination="@id/vacancyDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/messagesFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.MessagesFragment"
@@ -29,4 +37,9 @@
         android:name="ru.madj0ng.effectivemobiletest.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/vacancyDetailFragment"
+        android:name="ru.madj0ng.effectivemobiletest.VacancyDetailFragment"
+        android:label="fragment_vacancy_detail"
+        tools:layout="@layout/fragment_vacancy_detail" />
 </navigation>
