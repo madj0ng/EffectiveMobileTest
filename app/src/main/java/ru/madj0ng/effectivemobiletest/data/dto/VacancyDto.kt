@@ -2,12 +2,12 @@ package ru.madj0ng.effectivemobiletest.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class VacanciesDto(
+data class VacancyDto(
     val id: String,
     val lookingNumber: Int?,
     val title: String,
     @SerializedName("address")
-    val address: AdressDto?,
+    val address: AdressDto,
     val company: String,
     @SerializedName("experience")
     val experience: ExperienceDto,

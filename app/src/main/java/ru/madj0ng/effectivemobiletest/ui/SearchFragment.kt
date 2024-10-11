@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.mp.KoinPlatform
 import ru.madj0ng.effectivemobiletest.R
 import ru.madj0ng.effectivemobiletest.data.dto.OfferDto
-import ru.madj0ng.effectivemobiletest.data.dto.VacanciesDto
 import ru.madj0ng.effectivemobiletest.databinding.FragmentSearchBinding
+import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
 import ru.madj0ng.effectivemobiletest.presentation.OffersAdapter
 import ru.madj0ng.effectivemobiletest.presentation.SearchViewModel
 import ru.madj0ng.effectivemobiletest.presentation.VacanciesAdapter
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
+import ru.madj0ng.effectivemobiletest.util.NumericDeclination
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -24,6 +28,7 @@ class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModel()
     private var vacanciesAdapter: VacanciesAdapter? = null
     private var offersAdapter: OffersAdapter? = null
+    private val declination: NumericDeclination = KoinPlatform.getKoin().get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +42,17 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vacanciesAdapter = VacanciesAdapter {
-//            findNavController().navigate(R.id.action_searchFragment_to_vacancyDetailFragment, )
-        }
+        vacanciesAdapter = VacanciesAdapter(
+            { vacancyId ->
+                findNavController().navigate(
+                    R.id.action_searchFragment_to_vacancyDetailFragment,
+                    VacancyDetailFragment.createArgs(vacancyId)
+                )
+            },
+            { viewModel.toggleFavorite(it) }
+        )
         binding.rvVacancies.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = vacanciesAdapter
         }
 
@@ -97,34 +107,25 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun showContent(list: List<VacanciesDto>, count: Int) {
+    private fun showContent(list: List<VacancyModel>, count: Int) {
         showProgressBar(false)
-        showButtonCount(count)
-        showTopCount(count)
+        binding.bVacanciesButton.text = feminine(count, R.string.button_count_vacancies_inclined)
+        binding.tvTopListCount.text = feminine(count, R.string.count_vacancies_inclined)
         showVacancies(list)
     }
 
     private fun showProgressBar(isVisisble: Boolean) {
         binding.progressBar.isVisible = isVisisble
         binding.clVacancies.isVisible = !isVisisble
+        if (binding.defaultGroup.isVisible) binding.bMap.isVisible = !isVisisble
     }
 
-    private fun showVacancies(list: List<VacanciesDto>) {
+    private fun showVacancies(list: List<VacancyModel>) {
         binding.rvVacancies.isVisible = list.isNotEmpty()
         vacanciesAdapter?.setList(list)
     }
 
-    private fun showButtonCount(count: Int) {
-        binding.bVacanciesButton.text = getString(
-            R.string.button_count_vacancies_inclined,
-            count, "й"
-        )
-    }
-
-    private fun showTopCount(count: Int) {
-        binding.tvTopListCount.text = getString(
-            R.string.count_vacancies_inclined,
-            count, "й"
-        )
-    }
+    private fun feminine(count: Int, @StringRes strId: Int): String = getString(
+        strId, count, declination.feminine(count)
+    )
 }

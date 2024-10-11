@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/vacancyDetailFragment"
-        android:name="ru.madj0ng.effectivemobiletest.VacancyDetailFragment"
+        android:name="ru.madj0ng.effectivemobiletest.ui.VacancyDetailFragment"
         android:label="fragment_vacancy_detail"
         tools:layout="@layout/fragment_vacancy_detail" />
 </navigation>

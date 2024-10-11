@@ -6,18 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.madj0ng.effectivemobiletest.data.dto.OfferDto
-import ru.madj0ng.effectivemobiletest.data.dto.VacanciesDto
+import ru.madj0ng.effectivemobiletest.domain.favorite.FavoriteInteractor
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
-import ru.madj0ng.effectivemobiletest.domain.models.VacanciesRequestParam
+import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
 import ru.madj0ng.effectivemobiletest.domain.offers.OffersUseCase
 import ru.madj0ng.effectivemobiletest.domain.sharing.SharingUseCase
-import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesUseCase
+import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesInteractor
+import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesInteractorImpl
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
 
 class SearchViewModel(
     private val offers: OffersUseCase,
-    private val vacancies: VacanciesUseCase,
-    private val sharing: SharingUseCase
+    private val vacancies: VacanciesInteractor,
+    private val sharing: SharingUseCase,
+    private val favorite: FavoriteInteractor
 ) : ViewModel() {
 
     private val offersData = MutableLiveData<List<OfferDto>>()
@@ -31,21 +33,45 @@ class SearchViewModel(
 
     init {
         setOffers()
-        setVacancies(VacanciesRequestParam(defaultMax))
+        setVacancies(defaultMax)
     }
 
     fun nextPage() {
-        setVacancies(VacanciesRequestParam())
+        setVacancies()
         setDefault(true)
     }
 
     fun backPage() {
-        setVacancies(VacanciesRequestParam(defaultMax))
+        setVacancies(defaultMax)
         setDefault(false)
     }
 
     fun sharingOffer(urlString: String) {
         sharing.openLink(urlString)
+    }
+
+    fun toggleFavorite(vacancy: VacancyModel) {
+        viewModelScope.launch {
+            if (vacancy.isFavorite) {
+                favorite.deleteFavorite(vacancy)
+            } else {
+                favorite.insertFavorite(vacancy)
+            }
+        }
+        updateContent(vacancy.id, vacancy.copy(isFavorite = !vacancy.isFavorite))
+    }
+
+    private fun updateContent(vacancyId: String, vacancy: VacancyModel) {
+        val current = vacanciesData.value
+        if (current is VacanciesUiState.Content) {
+            val movieIndex = current.list.indexOfFirst { it.id == vacancyId }
+            if (movieIndex != -1) {
+                vacanciesData.value = VacanciesUiState.Content(
+                    current.list.toMutableList().also { it[movieIndex] = vacancy },
+                    current.count
+                )
+            }
+        }
     }
 
     private fun setDefault(isDefault: Boolean) {
@@ -65,15 +91,14 @@ class SearchViewModel(
         }
     }
 
-    private fun setVacancies(param: VacanciesRequestParam) {
+    private fun setVacancies(count: Int = 0) {
         vacanciesData.postValue(VacanciesUiState.Loading)
         viewModelScope.launch {
-            vacancies(param).collect {
+            vacancies(count).collect {
                 when (it) {
                     is Resource.Error -> renderVacanciesError(it.message)
                     is Resource.Success -> renderVacanciesSuccess(it.data, it.size)
                 }
-
             }
         }
     }
@@ -84,7 +109,7 @@ class SearchViewModel(
 
     private fun renderOfferError(message: String) {}
 
-    private fun renderVacanciesSuccess(list: List<VacanciesDto>, size: Int) {
+    private fun renderVacanciesSuccess(list: List<VacancyModel>, size: Int) {
         vacanciesData.postValue(VacanciesUiState.Content(list, size))
     }
 

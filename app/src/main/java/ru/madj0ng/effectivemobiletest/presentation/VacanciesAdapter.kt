@@ -4,16 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.mp.KoinPlatform.getKoin
 import ru.madj0ng.effectivemobiletest.R
-import ru.madj0ng.effectivemobiletest.data.dto.VacanciesDto
 import ru.madj0ng.effectivemobiletest.databinding.VacansiesItemBinding
+import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
+import ru.madj0ng.effectivemobiletest.util.NumericDeclination
 
 class VacanciesAdapter(
-    private val clickListener: OnClickListener,
+    private val itemClickListener: OnItemListener,
+    private val favoriteClickListener: OnFavoriteListener,
 ) : RecyclerView.Adapter<VacanciesAdapter.ViewHolder>() {
-    private var vacancies = mutableListOf<VacanciesDto>()
+    private var vacancies = mutableListOf<VacancyModel>()
 
-    fun setList(list: List<VacanciesDto>) {
+    fun setList(list: List<VacancyModel>) {
         this.vacancies.clear()
         this.vacancies.addAll(list)
         notifyDataSetChanged()
@@ -24,7 +27,9 @@ class VacanciesAdapter(
             VacansiesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(
             binding = binding,
-            clickListener = clickListener,
+            itemClickListener = itemClickListener,
+            favoriteClickListener = favoriteClickListener,
+            declination = getKoin().get()
         )
     }
 
@@ -36,36 +41,43 @@ class VacanciesAdapter(
 
     class ViewHolder(
         private val binding: VacansiesItemBinding,
-        private val clickListener: OnClickListener,
+        private val itemClickListener: OnItemListener,
+        private val favoriteClickListener: OnFavoriteListener,
+        private val declination: NumericDeclination
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(vacancies: VacanciesDto) {
-            binding.tvViewers.isVisible = (vacancies.lookingNumber != null)
+        fun bind(vacancy: VacancyModel) {
+            binding.tvViewers.isVisible = (vacancy.lookingNumber != null)
             if (binding.tvViewers.isVisible) {
                 binding.tvViewers.text = itemView.context.getString(
                     R.string.count_viewers,
-                    vacancies.lookingNumber, "а"
+                    vacancy.lookingNumber, declination.masculine(vacancy.lookingNumber!!)
                 )
             }
+            binding.ivFavorite.setImageResource(
+                if (vacancy.isFavorite) R.drawable.ic_favorite_active else R.drawable.ic_favorite_default
+            )
+            binding.tvTitle.text = vacancy.title
+            val salary =
+                if (vacancy.salaryShort.isNullOrBlank()) vacancy.salaryFull else vacancy.salaryShort
+            binding.tvSalary.isVisible = salary.isNotBlank()
+            if (binding.tvSalary.isVisible) binding.tvSalary.text = salary
+            binding.tvTown.text = vacancy.town
+            binding.tvCompany.text = vacancy.company
+            binding.tvExperience.text = vacancy.previewText
+            binding.tvPublishedDate.text =
+                itemView.context.getString(R.string.published_date, vacancy.formatedPublishedDate)
 
-            if (vacancies.isFavorite) {
-                binding.ivFavorite.setImageResource(R.drawable.ic_favorite_active)
-            } else {
-                binding.ivFavorite.setImageResource(R.drawable.ic_favorite_default)
-            }
-
-            binding.tvTitle.text = vacancies.title
-            binding.tvTown.isVisible = (vacancies.address != null)
-            if (binding.tvTown.isVisible) binding.tvTown.text = vacancies.address?.town
-            binding.tvCompany.text = vacancies.company
-            binding.tvExperience.text = vacancies.experience.previewText
-            binding.tvPublishedDate.text = vacancies.publishedDate
-
-            itemView.setOnClickListener { clickListener.onItemClick(vacancies.id) }
+            itemView.setOnClickListener { itemClickListener.onClick(vacancy.id) }
+            binding.ivFavorite.setOnClickListener { favoriteClickListener.onClick(vacancy) }
         }
     }
 
-    fun interface OnClickListener {
-        fun onItemClick(vacanciesId: String)
+    fun interface OnItemListener {
+        fun onClick(vacanciesId: String)
+    }
+
+    fun interface OnFavoriteListener {
+        fun onClick(vacancy: VacancyModel)
     }
 }

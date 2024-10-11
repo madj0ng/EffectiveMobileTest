@@ -5,6 +5,8 @@ import ru.madj0ng.effectivemobiletest.data.dto.OffersRequest
 import ru.madj0ng.effectivemobiletest.data.dto.OffersResponse
 import ru.madj0ng.effectivemobiletest.data.dto.VacanciesRequest
 import ru.madj0ng.effectivemobiletest.data.dto.VacanciesResponse
+import ru.madj0ng.effectivemobiletest.data.dto.VacancyRequest
+import ru.madj0ng.effectivemobiletest.data.dto.VacancyResponse
 import ru.madj0ng.effectivemobiletest.util.CheckConnect
 
 const val ERROR_CODE = -1
@@ -21,6 +23,7 @@ class RetrofitNetworkClient(
             when (dto) {
                 is OffersRequest -> offersRequest(dto)
                 is VacanciesRequest -> vacanciesRequest(dto)
+                is VacancyRequest -> vacancyRequest(dto)
                 else -> errorResponse()
             }
         } else {
@@ -50,6 +53,16 @@ class RetrofitNetworkClient(
             ).apply { resultCode = SUCCESS_CODE }
         } else {
             VacanciesResponse(listOf()).apply { resultCode = SUCCESS_CODE }
+        }
+    }
+
+    private suspend fun vacancyRequest(vacancyRequest: VacancyRequest): VacancyResponse {
+        val result = api.getAll(vacancyRequest.request)
+        return if (result?.vacancies != null) {
+            val vacancy = result.vacancies.find { it.id == vacancyRequest.vacancyId }
+            VacancyResponse(vacancy).apply { SUCCESS_CODE }
+        } else {
+            VacancyResponse(null).apply { SUCCESS_CODE }
         }
     }
 

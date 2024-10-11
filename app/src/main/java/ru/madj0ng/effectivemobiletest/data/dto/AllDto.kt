@@ -6,5 +6,5 @@ data class AllDto(
     @SerializedName("offers")
     val offers: List<OfferDto>?,
     @SerializedName("vacancies")
-    val vacancies: List<VacanciesDto>?
+    val vacancies: List<VacancyDto>?
 )

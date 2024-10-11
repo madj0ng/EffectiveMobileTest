@@ -2,15 +2,27 @@ package ru.madj0ng.effectivemobiletest.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import ru.madj0ng.effectivemobiletest.domain.sharing.SharingUseCase
+import ru.madj0ng.effectivemobiletest.presentation.FavoriteViewModel
 import ru.madj0ng.effectivemobiletest.presentation.SearchViewModel
+import ru.madj0ng.effectivemobiletest.presentation.VacancyDetailViewModel
 
 val viewModelModule = module {
     viewModel {
         SearchViewModel(
             offers = get(),
             vacancies = get(),
-            sharing = get()
+            sharing = get(),
+            favorite = get(),
+        )
+    }
+    viewModel {
+        FavoriteViewModel(
+            favoriteInteractor = get()
+        )
+    }
+    viewModel {
+        VacancyDetailViewModel(
+            vacancies = get()
         )
     }
 }

@@ -8,7 +8,6 @@ import ru.madj0ng.effectivemobiletest.data.dto.OffersResponse
 import ru.madj0ng.effectivemobiletest.data.network.FILE_KEY
 import ru.madj0ng.effectivemobiletest.data.network.NetworkClient
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
-import ru.madj0ng.effectivemobiletest.domain.models.VacanciesRequestParam
 import ru.madj0ng.effectivemobiletest.domain.offers.OffersRepository
 
 class OffersRepositoryImpl(
