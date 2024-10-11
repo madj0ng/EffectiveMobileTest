@@ -60,6 +60,7 @@ class SearchViewModel(
     }
 
     private fun setVacancies(param: VacanciesRequestParam) {
+        vacanciesData.postValue(VacanciesUiState.Loading)
         viewModelScope.launch {
             vacancies(param).collect {
                 when (it) {

@@ -75,18 +75,14 @@ class SearchFragment : Fragment() {
     }
 
     private fun render(isDeafult: Boolean) {
-        binding.ivBackButton.isVisible = isDeafult
-        binding.tvTopListCount.isVisible = isDeafult
-        binding.tvTopListSort.isVisible = isDeafult
+        binding.defaultGroup.isVisible = isDeafult
         if (isDeafult) {
             binding.etSearch.setHint(R.string.search_hint_post)
         } else {
             binding.etSearch.setHint(R.string.search_hint_text)
         }
-
-        binding.tvVacanciesTitle.isVisible = !isDeafult
-        binding.ivSearchButton.isVisible = !isDeafult
-        binding.rvOffers.isVisible = !isDeafult
+        binding.vacanciesGroup.isVisible = !isDeafult
+        binding.bVacanciesButton.isVisible = !isDeafult
     }
 
     private fun render(list: List<OfferDto>) {
@@ -97,14 +93,20 @@ class SearchFragment : Fragment() {
     private fun render(state: VacanciesUiState) {
         when (state) {
             is VacanciesUiState.Content -> showContent(state.list, state.count)
-            is VacanciesUiState.Loading -> {}
+            is VacanciesUiState.Loading -> showProgressBar(true)
         }
     }
 
     private fun showContent(list: List<VacanciesDto>, count: Int) {
+        showProgressBar(false)
         showButtonCount(count)
         showTopCount(count)
         showVacancies(list)
+    }
+
+    private fun showProgressBar(isVisisble: Boolean) {
+        binding.progressBar.isVisible = isVisisble
+        binding.clVacancies.isVisible = !isVisisble
     }
 
     private fun showVacancies(list: List<VacanciesDto>) {

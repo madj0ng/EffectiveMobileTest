@@ -36,18 +36,18 @@
         app:layout_constraintGuide_end="@dimen/dim_54dp" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/offersGroup"
+        android:id="@+id/vacanciesGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:constraint_referenced_ids="rvOffers, tvVacanciesTitle" />
+        app:constraint_referenced_ids="tvVacanciesTitle, ivSearchButton, rvOffers" />
 
-<!--    <androidx.constraintlayout.widget.Group-->
-<!--        android:id="@+id/vacansiesGroup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="visible"-->
-<!--        app:constraint_referenced_ids="tvTopListCount, tvTopListSort, tvTopListSortArrows, bVacanciesButton, tvVacanciesTitle" />-->
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/defaultGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="ivBackButton, tvTopListCount, tvTopListSort, bMap, tvTopListSortArrows" />
 
     <EditText
         android:id="@+id/etSearch"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_16dp"
         android:text="@string/count_vacancies_inclined"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/etSearch" />
 
@@ -121,7 +121,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrows_default"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tvTopListSort"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:tint="@color/blue" />
@@ -132,7 +131,6 @@
         android:layout_height="@dimen/dim_120dp"
         android:layout_marginTop="@dimen/dim_16dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/tvVacanciesTitle"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvTopListCount"
@@ -149,31 +147,64 @@
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/rvOffers" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvVacancies"
+    <ScrollView
+        android:id="@+id/svList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dim_16dp"
-        android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dim_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/bVacanciesButton"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        app:layout_constraintStart_toEndOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvVacanciesTitle"
-        tools:listitem="@layout/vacansies_item" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bVacanciesButton"
-        style="@style/VacanciesButton"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dim_48dp"
-        android:layout_marginBottom="@dimen/dim_8dp"
-        android:text="@string/button_count_vacancies_inclined"
+        android:scrollbars="none"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/rvVacancies" />
+        app:layout_constraintTop_toBottomOf="@+id/tvVacanciesTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clVacancies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvVacancies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_16dp"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/bVacanciesButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/vacansies_item" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bVacanciesButton"
+                style="@style/VacanciesButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dim_48dp"
+                android:layout_marginBottom="@dimen/dim_8dp"
+                android:text="@string/button_count_vacancies_inclined"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvVacancies" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/dim_48dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/blue"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/svList" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bMap"
@@ -184,7 +215,7 @@
         android:drawableStart="@drawable/ic_map_default"
         android:padding="@dimen/dim_12dp"
         android:text="@string/button_map"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline" />
 
