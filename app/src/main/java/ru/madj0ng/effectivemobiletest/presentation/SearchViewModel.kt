@@ -12,7 +12,6 @@ import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
 import ru.madj0ng.effectivemobiletest.domain.offers.OffersUseCase
 import ru.madj0ng.effectivemobiletest.domain.sharing.SharingUseCase
 import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesInteractor
-import ru.madj0ng.effectivemobiletest.domain.vacancies.VacanciesInteractorImpl
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
 
 class SearchViewModel(
@@ -24,24 +23,20 @@ class SearchViewModel(
 
     private val offersData = MutableLiveData<List<OfferDto>>()
     fun getOffers(): LiveData<List<OfferDto>> = offersData
-    private val vacanciesData = MutableLiveData<VacanciesUiState>(VacanciesUiState.Loading)
+    private val vacanciesData = MutableLiveData<VacanciesUiState>()
     fun getVacancies(): LiveData<VacanciesUiState> = vacanciesData
     private val defaultData = MutableLiveData<Boolean>()
     fun getDefault(): LiveData<Boolean> = defaultData
 
     private var defaultMax = 3
 
-    init {
-        setOffers()
-        setVacancies(defaultMax)
-    }
-
     fun nextPage() {
         setVacancies()
         setDefault(true)
     }
 
-    fun backPage() {
+    fun defaultPage() {
+        setOffers()
         setVacancies(defaultMax)
         setDefault(false)
     }
@@ -92,7 +87,7 @@ class SearchViewModel(
     }
 
     private fun setVacancies(count: Int = 0) {
-        vacanciesData.postValue(VacanciesUiState.Loading)
+        //vacanciesData.postValue(VacanciesUiState.Loading)
         viewModelScope.launch {
             vacancies(count).collect {
                 when (it) {

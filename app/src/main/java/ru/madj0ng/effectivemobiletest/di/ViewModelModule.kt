@@ -17,12 +17,13 @@ val viewModelModule = module {
     }
     viewModel {
         FavoriteViewModel(
-            favoriteInteractor = get()
+            favorite = get()
         )
     }
     viewModel {
         VacancyDetailViewModel(
-            vacancies = get()
+            vacancies = get(),
+            mapperInfo = get()
         )
     }
 }

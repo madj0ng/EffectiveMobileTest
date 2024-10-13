@@ -71,8 +71,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ivBackButton"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/ivBackButton"
-        app:srcCompat="@drawable/ic_favorite_default"
-        app:tint="@color/white" />
+        app:srcCompat="@drawable/ic_favorite_default" />
 
     <ScrollView
         android:id="@+id/svList"
@@ -166,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dim_4dp"
-                android:layout_marginTop="@dimen/dim_24dp"
+                android:layout_marginTop="20dp"
                 android:paddingStart="@dimen/dim_8dp"
                 android:paddingTop="@dimen/dim_8dp"
                 android:paddingEnd="@dimen/dim_32dp"
@@ -267,10 +266,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_16dp"
+                android:text="@string/title_your_task"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDescription"
-                tools:text="Ваши задачи" />
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
             <TextView
                 android:id="@+id/tvResponsibilities"
@@ -289,10 +288,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_32dp"
+                android:text="@string/aks_questions"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvResponsibilities"
-                tools:text="Задайте вопрос работодателю" />
+                app:layout_constraintTop_toBottomOf="@id/tvResponsibilities" />
 
             <TextView
                 android:id="@+id/tvQuestionsInfo"
@@ -300,10 +299,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_8dp"
+                android:text="@string/resive_response"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvQuestionsTitle"
-                tools:text="Он получит его с откликом на вакансию" />
+                app:layout_constraintTop_toBottomOf="@id/tvQuestionsTitle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvQuestions"
@@ -319,12 +318,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bRespondButton"
-        style="@style/VacanciesButton"
+        style="@style/RespondButton8"
         android:layout_width="0dp"
         android:layout_height="@dimen/dim_48dp"
         android:layout_marginBottom="@dimen/dim_16dp"
-        android:text="@string/button_count_vacancies_inclined"
-        android:visibility="visible"
+        android:text="@string/button_respond"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"

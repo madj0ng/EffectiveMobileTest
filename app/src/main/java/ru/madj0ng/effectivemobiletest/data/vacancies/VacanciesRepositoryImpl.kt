@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.flow
 import ru.madj0ng.effectivemobiletest.data.db.AppDatabase
 import ru.madj0ng.effectivemobiletest.data.dto.VacanciesResponse
 import ru.madj0ng.effectivemobiletest.data.dto.VacancyResponse
-import ru.madj0ng.effectivemobiletest.data.mapper.MapperDto
-import ru.madj0ng.effectivemobiletest.data.mapper.MapperRequest
+import ru.madj0ng.effectivemobiletest.domain.mapper.MapperDto
+import ru.madj0ng.effectivemobiletest.domain.mapper.MapperRequest
 import ru.madj0ng.effectivemobiletest.data.network.NetworkClient
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
 import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel

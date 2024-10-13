@@ -3,7 +3,7 @@ package ru.madj0ng.effectivemobiletest.data.favorite
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.madj0ng.effectivemobiletest.data.db.AppDatabase
-import ru.madj0ng.effectivemobiletest.data.mapper.MapperDb
+import ru.madj0ng.effectivemobiletest.domain.mapper.MapperDb
 import ru.madj0ng.effectivemobiletest.domain.favorite.FavoriteRepository
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
 import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel

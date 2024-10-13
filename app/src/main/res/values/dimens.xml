@@ -3,6 +3,7 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/dim_10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/dim_10sp</dimen>
 
+    <dimen name="dim_7sp">7sp</dimen>
     <dimen name="dim_10sp">10sp</dimen>
     <dimen name="dim_14sp">14sp</dimen>
     <dimen name="dim_16sp">16sp</dimen>

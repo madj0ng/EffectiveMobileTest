@@ -10,15 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.mp.KoinPlatform
+import org.koin.mp.KoinPlatform.getKoin
 import ru.madj0ng.effectivemobiletest.R
 import ru.madj0ng.effectivemobiletest.data.dto.OfferDto
 import ru.madj0ng.effectivemobiletest.databinding.FragmentSearchBinding
+import ru.madj0ng.effectivemobiletest.domain.favorite.CurrenFavoriteCount
 import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
 import ru.madj0ng.effectivemobiletest.presentation.OffersAdapter
 import ru.madj0ng.effectivemobiletest.presentation.SearchViewModel
 import ru.madj0ng.effectivemobiletest.presentation.VacanciesAdapter
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
+import ru.madj0ng.effectivemobiletest.presentation.models.VacancyInfo
 import ru.madj0ng.effectivemobiletest.util.NumericDeclination
 
 class SearchFragment : Fragment() {
@@ -28,7 +30,7 @@ class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModel()
     private var vacanciesAdapter: VacanciesAdapter? = null
     private var offersAdapter: OffersAdapter? = null
-    private val declination: NumericDeclination = KoinPlatform.getKoin().get()
+    private val declination: NumericDeclination = getKoin().get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +51,10 @@ class SearchFragment : Fragment() {
                     VacancyDetailFragment.createArgs(vacancyId)
                 )
             },
-            { viewModel.toggleFavorite(it) }
+            {
+                viewModel.toggleFavorite(it)
+                (requireActivity() as CurrenFavoriteCount).changeToggleFavorite(it.isFavorite)
+            }
         )
         binding.rvVacancies.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -66,8 +71,10 @@ class SearchFragment : Fragment() {
             adapter = offersAdapter
         }
 
+        viewModel.defaultPage()
+
         binding.bVacanciesButton.setOnClickListener { viewModel.nextPage() }
-        binding.ivBackButton.setOnClickListener { viewModel.backPage() }
+        binding.ivBackButton.setOnClickListener { viewModel.defaultPage() }
 
         viewModel.getOffers().observe(viewLifecycleOwner) {
             binding.rvOffers.isVisible = it.isNotEmpty()

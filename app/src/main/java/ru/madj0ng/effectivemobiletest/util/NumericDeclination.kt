@@ -1,6 +1,8 @@
 package ru.madj0ng.effectivemobiletest.util
 
 class NumericDeclination {
+    fun plural(number: Int) = convert(number, arrayOf("ся", "ось", "ось"))
+
     fun feminine(number: Int) = convert(number, arrayOf("я", "й", "и"))
 
     fun masculine(number: Int): String = convert(number, arrayOf("", "", "а"))

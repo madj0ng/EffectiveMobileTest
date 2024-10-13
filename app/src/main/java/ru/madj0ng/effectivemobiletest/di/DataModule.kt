@@ -2,6 +2,7 @@ package ru.madj0ng.effectivemobiletest.di
 
 import android.content.Intent
 import androidx.room.Room
+import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -39,4 +40,6 @@ val dataModule = module {
     }
 
     factory { Intent() }
+
+    factory { Gson() }
 }

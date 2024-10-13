@@ -47,26 +47,30 @@ class VacanciesAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(vacancy: VacancyModel) {
-            binding.tvViewers.isVisible = (vacancy.lookingNumber != null)
+            binding.tvViewers.isVisible = (vacancy.lookingNumber != 0)
             if (binding.tvViewers.isVisible) {
                 binding.tvViewers.text = itemView.context.getString(
                     R.string.count_viewers,
-                    vacancy.lookingNumber, declination.masculine(vacancy.lookingNumber!!)
+                    vacancy.lookingNumber, declination.masculine(vacancy.lookingNumber)
                 )
             }
+
             binding.ivFavorite.setImageResource(
                 if (vacancy.isFavorite) R.drawable.ic_favorite_active else R.drawable.ic_favorite_default
             )
+
             binding.tvTitle.text = vacancy.title
-            val salary =
-                if (vacancy.salaryShort.isNullOrBlank()) vacancy.salaryFull else vacancy.salaryShort
-            binding.tvSalary.isVisible = salary.isNotBlank()
-            if (binding.tvSalary.isVisible) binding.tvSalary.text = salary
-            binding.tvTown.text = vacancy.town
+
+            binding.tvSalary.isVisible = vacancy.salary.full.isNotBlank()
+            if (binding.tvSalary.isVisible) binding.tvSalary.text = vacancy.salary.full
+
+            binding.tvTown.text = vacancy.address.town
             binding.tvCompany.text = vacancy.company
-            binding.tvExperience.text = vacancy.previewText
+
+            binding.tvExperience.text = vacancy.experience.previewText
+
             binding.tvPublishedDate.text =
-                itemView.context.getString(R.string.published_date, vacancy.formatedPublishedDate)
+                itemView.context.getString(R.string.published_date, vacancy.publishedDate)
 
             itemView.setOnClickListener { itemClickListener.onClick(vacancy.id) }
             binding.ivFavorite.setOnClickListener { favoriteClickListener.onClick(vacancy) }

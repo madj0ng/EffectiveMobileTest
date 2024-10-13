@@ -163,7 +163,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ivRespond"
-        style="@style/RespondButton"
+        style="@style/RespondButton50"
         android:layout_width="0dp"
         android:layout_height="@dimen/dim_32dp"
         android:text="@string/button_respond"

@@ -11,12 +11,18 @@
     <string name="search_hint_post">Должность, по подходящим вакансиям</string>
     <string name="title_vacancies_for_you">Вакансии для вас</string>
     <string name="title_favorite">Избранное</string>
+    <string name="title_your_task">Ваши задачи</string>
     <string name="count_viewers">Сейчас просматривает %1$d человек%2$s</string>
+    <string name="count_viewers_now">%1$d человек%2$s cейчас смотрят</string>
+    <string name="count_of_responses">%1$d человек%2$s уже откликнул%3$s</string>
     <string name="count_vacancies_inclined">%1$d ваканси%2$s</string>
     <string name="button_count_vacancies_inclined">Еще %1$d ваканси%2$s</string>
     <string name="button_respond">Откликнуться</string>
     <string name="button_map">Карта</string>
     <string name="by_correspondence">По соответствию</string>
+    <string name="aks_questions">Задайте вопрос работодателю</string>
+    <string name="resive_response">Он получит его с откликом на вакансию</string>
+    <string name="experience_of_detail">Требуемый опыт: %1$s</string>
 
     <string name="published_date">Опубликовано %1$s</string>
 

@@ -1,4 +1,4 @@
-package ru.madj0ng.effectivemobiletest.data.mapper
+package ru.madj0ng.effectivemobiletest.domain.mapper
 
 import ru.madj0ng.effectivemobiletest.data.dto.VacanciesRequest
 import ru.madj0ng.effectivemobiletest.data.dto.VacancyRequest

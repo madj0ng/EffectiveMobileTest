@@ -17,7 +17,6 @@ class RetrofitNetworkClient(
     private val connected: CheckConnect,
     private val api: ApiService,
 ) : NetworkClient {
-
     override suspend fun doRequest(dto: Any): NetworkResponse {
         return if (connected.isConnected()) {
             when (dto) {

@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.mp.KoinPlatform
 import ru.madj0ng.effectivemobiletest.R
 import ru.madj0ng.effectivemobiletest.databinding.FragmentFavoriteBinding
+import ru.madj0ng.effectivemobiletest.domain.favorite.CurrenFavoriteCount
 import ru.madj0ng.effectivemobiletest.domain.models.VacancyModel
 import ru.madj0ng.effectivemobiletest.presentation.FavoriteViewModel
 import ru.madj0ng.effectivemobiletest.presentation.VacanciesAdapter
@@ -22,7 +24,7 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: FavoriteViewModel by viewModel()
+    private val viewModel: FavoriteViewModel by activityViewModel<FavoriteViewModel>()
     private var favoritesAdapter: VacanciesAdapter? = null
     private val declination: NumericDeclination = KoinPlatform.getKoin().get()
 
@@ -40,10 +42,16 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         favoritesAdapter = VacanciesAdapter(
-            {
-//            findNavController().navigate(R.id.action_searchFragment_to_vacancyDetailFragment, )
+            {vacancyId ->
+                findNavController().navigate(
+                    R.id.action_favoriteFragment_to_vacancyDetailFragment,
+                    VacancyDetailFragment.createArgs(vacancyId)
+                )
             },
-            {}
+            {
+                viewModel.toggleFavorite(it)
+                (requireActivity() as CurrenFavoriteCount).changeToggleFavorite(it.isFavorite)
+            }
         )
 
         binding.rvVacancies.apply {
@@ -54,6 +62,7 @@ class FavoriteFragment : Fragment() {
         viewModel.loadData()
 
         viewModel.getFavorites().observe(viewLifecycleOwner, this::render)
+        viewModel.getFavoriteCount().observe(viewLifecycleOwner, this::render)
     }
 
     override fun onDestroyView() {
@@ -68,9 +77,14 @@ class FavoriteFragment : Fragment() {
         }
     }
 
+    private fun render(count: Int) {
+        (requireActivity() as CurrenFavoriteCount).setFavoriteCount(count)
+    }
+
     private fun showContent(list: List<VacancyModel>, count: Int) {
         binding.tvTopListCount.isVisible = count != 0
-        if(binding.tvTopListCount.isVisible) binding.tvTopListCount.text = feminine(count, R.string.count_vacancies_inclined)
+        if (binding.tvTopListCount.isVisible) binding.tvTopListCount.text =
+            feminine(count, R.string.count_vacancies_inclined)
         showFavorites(list)
     }
 
