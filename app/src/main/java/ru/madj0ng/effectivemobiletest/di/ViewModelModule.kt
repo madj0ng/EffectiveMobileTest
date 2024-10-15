@@ -3,6 +3,7 @@ package ru.madj0ng.effectivemobiletest.di
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.madj0ng.effectivemobiletest.presentation.FavoriteViewModel
+import ru.madj0ng.effectivemobiletest.presentation.auth.LoginViewModel
 import ru.madj0ng.effectivemobiletest.presentation.SearchViewModel
 import ru.madj0ng.effectivemobiletest.presentation.VacancyDetailViewModel
 
@@ -25,5 +26,9 @@ val viewModelModule = module {
             vacancies = get(),
             mapperInfo = get()
         )
+    }
+
+    viewModel {
+        LoginViewModel(get())
     }
 }

@@ -7,6 +7,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.madj0ng.effectivemobiletest.data.auth.LoginDataSource
 import ru.madj0ng.effectivemobiletest.data.db.AppDatabase
 import ru.madj0ng.effectivemobiletest.data.network.ApiService
 import ru.madj0ng.effectivemobiletest.data.network.NetworkClient
@@ -38,6 +39,8 @@ val dataModule = module {
             api = get()
         )
     }
+
+    factory { LoginDataSource() }
 
     factory { Intent() }
 

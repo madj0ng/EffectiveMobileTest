@@ -2,6 +2,7 @@ package ru.madj0ng.effectivemobiletest.di
 
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import ru.madj0ng.effectivemobiletest.data.auth.LoginRepository
 import ru.madj0ng.effectivemobiletest.data.favorite.FavoriteRepositoryImpl
 import ru.madj0ng.effectivemobiletest.data.offers.OffersRepositoryImpl
 import ru.madj0ng.effectivemobiletest.data.vacancies.VacanciesRepositoryImpl
@@ -38,4 +39,6 @@ val repositoryModule = module {
             mapperDb = get()
         )
     }
+
+    factory { LoginRepository(get()) }
 }

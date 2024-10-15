@@ -20,7 +20,6 @@ import ru.madj0ng.effectivemobiletest.presentation.OffersAdapter
 import ru.madj0ng.effectivemobiletest.presentation.SearchViewModel
 import ru.madj0ng.effectivemobiletest.presentation.VacanciesAdapter
 import ru.madj0ng.effectivemobiletest.presentation.models.VacanciesUiState
-import ru.madj0ng.effectivemobiletest.presentation.models.VacancyInfo
 import ru.madj0ng.effectivemobiletest.util.NumericDeclination
 
 class SearchFragment : Fragment() {
