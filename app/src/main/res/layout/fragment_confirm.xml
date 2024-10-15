@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimaryDark"
+    tools:context=".ui.auth.ConfirmFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dim_16dp" />
+
+    <TextView
+        android:id="@+id/tvConfirmationEmail"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/send_email_to"
+        app:layout_constraintBottom_toTopOf="@+id/tvConfirmationText"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvConfirmationText"
+        style="@style/Title3White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:text="@string/login_confirmation"
+        app:layout_constraintBottom_toTopOf="@+id/etNum1"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvConfirmationEmail" />
+
+    <EditText
+        android:id="@+id/etNum1"
+        style="@style/NumEditText"
+        android:layout_width="@dimen/dim_48dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:autofillHints="@string/prompt_email"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:hint="@string/confirm_star"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/dim_8dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/bEnterConfirm"
+        app:layout_constraintEnd_toStartOf="@+id/etNum2"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvConfirmationText" />
+
+    <EditText
+        android:id="@+id/etNum2"
+        style="@style/NumEditText"
+        android:layout_width="@dimen/dim_48dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginStart="@dimen/dim_8dp"
+        android:autofillHints="@string/prompt_email"
+        android:hint="@string/confirm_star"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/dim_8dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/etNum1"
+        app:layout_constraintEnd_toStartOf="@+id/etNum3"
+        app:layout_constraintStart_toEndOf="@+id/etNum1"
+        app:layout_constraintTop_toTopOf="@+id/etNum1" />
+
+    <EditText
+        android:id="@+id/etNum3"
+        style="@style/NumEditText"
+        android:layout_width="@dimen/dim_48dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginStart="@dimen/dim_8dp"
+        android:autofillHints="@string/prompt_email"
+        android:hint="@string/confirm_star"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/dim_8dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/etNum1"
+        app:layout_constraintEnd_toStartOf="@+id/etNum4"
+        app:layout_constraintStart_toEndOf="@+id/etNum2"
+        app:layout_constraintTop_toTopOf="@+id/etNum1" />
+
+    <EditText
+        android:id="@+id/etNum4"
+        style="@style/NumEditText"
+        android:layout_width="@dimen/dim_48dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginStart="@dimen/dim_8dp"
+        android:autofillHints="@string/prompt_email"
+        android:hint="@string/confirm_star"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/dim_8dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/etNum1"
+        app:layout_constraintStart_toEndOf="@+id/etNum3"
+        app:layout_constraintTop_toTopOf="@+id/etNum1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bEnterConfirm"
+        style="@style/EnterByMailButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:layout_marginBottom="@dimen/dim_132dp"
+        android:text="@string/enter_by_mail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/etNum1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

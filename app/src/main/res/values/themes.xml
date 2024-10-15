@@ -1,0 +1,17 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EffectiveMobileTest" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/black_universal</item>
+
+        <!-- Цвета текста -->
+        <item name="android:textColorPrimary">@color/white_universal</item>
+        <item name="android:textColorSecondary">@color/white_universal</item>
+        <!-- Цвет фона окна -->
+        <item name="android:windowBackground">@color/white_universal</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.EffectiveMobileTest" parent="Base.Theme.EffectiveMobileTest" />
+
+</resources>

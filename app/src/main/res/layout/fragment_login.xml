@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimaryDark"
+    tools:context=".ui.auth.LoginFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dim_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/dim_32dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/dim_54dp" />
+
+    <TextView
+        android:id="@+id/tvVacanciesTitle"
+        style="@style/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_in_profile"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/top_guideline" />
+
+    <View
+        android:id="@+id/vViewTop"
+        style="@style/ListItem"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_180dp"
+        android:layout_marginTop="@dimen/dim_24dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@id/vViewBottom"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@id/top_guideline" />
+
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        style="@style/Title3White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_24dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:text="@string/enter_top_title"
+        app:layout_constraintBottom_toTopOf="@+id/etUsername"
+        app:layout_constraintEnd_toEndOf="@+id/vViewTop"
+        app:layout_constraintStart_toStartOf="@+id/vViewTop"
+        app:layout_constraintTop_toTopOf="@+id/vViewTop" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        style="@style/SearchEditText"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_40dp"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:autofillHints="@string/prompt_email"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:padding="@dimen/dim_8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bEnterMail"
+        app:layout_constraintEnd_toEndOf="@+id/vViewTop"
+        app:layout_constraintStart_toStartOf="@+id/vViewTop"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginTitle" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bEnterMail"
+        style="@style/EnterByMailButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:layout_marginBottom="@dimen/dim_24dp"
+        android:text="@string/enter_by_mail"
+        app:layout_constraintBottom_toBottomOf="@+id/vViewTop"
+        app:layout_constraintEnd_toStartOf="@+id/bEneterPass"
+        app:layout_constraintStart_toStartOf="@+id/vViewTop"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bEneterPass"
+        style="@style/EnterByPassButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_48dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:text="@string/enter_by_pass"
+        app:layout_constraintBottom_toBottomOf="@+id/bEnterMail"
+        app:layout_constraintEnd_toEndOf="@+id/vViewTop"
+        app:layout_constraintStart_toEndOf="@+id/bEnterMail"
+        app:layout_constraintTop_toTopOf="@+id/bEnterMail" />
+
+    <View
+        android:id="@+id/vViewBottom"
+        style="@style/ListItem"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_140dp"
+        android:layout_marginTop="@dimen/dim_24dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@id/vViewTop" />
+
+    <TextView
+        android:id="@+id/tvBottomTitle"
+        style="@style/Title3White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_24dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:text="@string/enter_bottom_title"
+        app:layout_constraintBottom_toTopOf="@id/tvBottomText"
+        app:layout_constraintEnd_toEndOf="@+id/vViewBottom"
+        app:layout_constraintStart_toStartOf="@+id/vViewBottom"
+        app:layout_constraintTop_toTopOf="@+id/vViewBottom" />
+
+    <TextView
+        android:id="@+id/tvBottomText"
+        style="@style/ButtonText2White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_8dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:text="@string/enter_bottom_text"
+        app:layout_constraintBottom_toTopOf="@id/ivRespond"
+        app:layout_constraintEnd_toEndOf="@+id/vViewBottom"
+        app:layout_constraintStart_toStartOf="@+id/vViewBottom"
+        app:layout_constraintTop_toBottomOf="@+id/tvBottomTitle" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ivRespond"
+        style="@style/RespondButton50"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dim_32dp"
+        android:text="@string/enter_bottom_button"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:layout_marginBottom="@dimen/dim_24dp"
+        android:layout_marginStart="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        app:layout_constraintBottom_toBottomOf="@id/vViewBottom"
+        app:layout_constraintEnd_toEndOf="@+id/vViewBottom"
+        app:layout_constraintStart_toStartOf="@+id/vViewBottom"
+        app:layout_constraintTop_toBottomOf="@+id/tvBottomText" />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/loading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:layout_marginBottom="64dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/password"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/password"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.3" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

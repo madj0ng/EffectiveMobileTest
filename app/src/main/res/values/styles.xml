@@ -1,7 +1,208 @@
 <resources>
+    <style name="Number">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/dim_7sp</item>
+    </style>
 
-    <style name="Widget.Theme.EffectiveMobileTest.ButtonBar.Fullscreen" parent="">
-        <item name="android:background">@color/black_overlay</item>
-        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    <style name="Text1">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/dim_14sp</item>
+    </style>
+
+    <style name="TabText">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/dim_10sp</item>
+    </style>
+
+    <style name="ButtonText1">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/dim_16sp</item>
+    </style>
+
+    <style name="ButtonText2">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/dim_14sp</item>
+    </style>
+
+    <style name="Title1">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/dim_22sp</item>
+    </style>
+
+    <style name="Title2">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/dim_20sp</item>
+    </style>
+
+    <style name="Title3">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/dim_16sp</item>
+    </style>
+
+    <style name="Title4">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/dim_14sp</item>
+    </style>
+
+    <style name="NumberWhite" parent="Number">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text1Green" parent="Text1">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Text1Gray3" parent="Text1">
+        <item name="android:textColor">@color/gray3</item>
+    </style>
+
+    <style name="Text1White" parent="Text1">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text1Blue" parent="Text1">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Title1White" parent="Title1">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Title1Gray3" parent="Title1">
+        <item name="android:textColor">@color/gray3</item>
+    </style>
+
+    <style name="Title2White" parent="Title2">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Title3White" parent="Title3">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Title4White" parent="Title4">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Title4Gray3" parent="Title4">
+        <item name="android:textColor">@color/gray3</item>
+    </style>
+
+    <style name="ButtonText1White" parent="ButtonText1">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonText1Green" parent="ButtonText1">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="ButtonText2White" parent="ButtonText2">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonText2Blue" parent="ButtonText2">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="TitleText" parent="Title2White">
+        <item name="android:textSize">@dimen/dim_20sp</item>
+    </style>
+
+    <style name="CustomBottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/dim_10sp</item>
+        <item name="android:background">@color/black</item>
+        <item name="backgroundTint">@color/black</item>
+        <item name="itemIconTint">@color/nav_item_color</item>
+        <item name="itemTextColor">@color/nav_item_color</item>
+        <item name="itemPaddingBottom">@dimen/dim_8dp</item>
+        <item name="itemPaddingTop">@dimen/dim_8dp</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemTextAppearanceActive">@dimen/design_bottom_navigation_active_text_size
+        </item>
+        <item name="itemTextAppearanceInactive">@dimen/design_bottom_navigation_text_size</item>
+    </style>
+
+    <style name="ListItem">
+        <item name="android:background">@drawable/sh_item_gray1_radius8</item>
+    </style>
+
+    <style name="SearchEditText" parent="Text1White">
+        <item name="android:textColorHint">@color/gray3</item>
+        <item name="android:lines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">text</item>
+        <item name="android:background">@drawable/sh_edit_text_default</item>
+    </style>
+
+    <style name="NumEditText" parent="Text1White">
+        <item name="android:textColorHint">@color/gray3</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:background">@drawable/sh_edit_text_default</item>
+    </style>
+
+    <style name="SmallButtom">
+        <item name="android:background">@drawable/sh_small_button_radius_10</item>
+        <item name="tint">@color/gray3</item>
+    </style>
+
+    <style name="ButtomDarkGreen8" parent="Text1White">
+        <item name="android:background">@drawable/sl_default_button_8</item>
+        <item name="android:backgroundTint">@color/dark_green</item>
+        <item name="android:lines">2</item>
+    </style>
+
+    <style name="RespondButton50" parent="ButtonText2White">
+        <item name="android:background">@drawable/sl_default_button_50</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="VacanciesButton" parent="ButtonText1White">
+        <item name="android:background">@drawable/sl_default_button_8</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="EnterByMailButton" parent="ButtonText2White">
+        <item name="android:background">@drawable/sl_default_button_8</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/sl_button_black_white</item>
+    </style>
+
+    <style name="EnterByPassButton" parent="ButtonText2Blue">
+        <item name="android:background">@null</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="RespondButton8" parent="ButtonText1White">
+        <item name="android:background">@drawable/sl_buttom_green_8</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="MapButton" parent="Title3White">
+        <item name="android:background">@drawable/sh_small_button_radius_50</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="QuestionButton" parent="Title4White">
+        <item name="android:background">@drawable/sh_small_button_radius_50</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/dim_0dp</item>
+        <item name="android:paddingStart">@dimen/dim_12dp</item>
+        <item name="android:paddingEnd">@dimen/dim_12dp</item>
+        <item name="android:paddingTop">@dimen/dim_8dp</item>
+        <item name="android:paddingBottom">@dimen/dim_8dp</item>
     </style>
 </resources>

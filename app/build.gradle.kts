@@ -2,11 +2,12 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-android")
 }
 
 android {
     namespace = "ru.madj0ng.effectivemobiletest"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdkVersion(libs.versions.compileSdk.get().toInt())
 
     defaultConfig {
         applicationId = "ru.madj0ng.effectivemobiletest"
@@ -69,11 +70,14 @@ dependencies {
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
+    // network
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+
     // dependency Injection
     implementation(libs.koin)
 
     // image
     implementation(libs.glide)
     kapt(libs.glide.compiler)
-
 }
