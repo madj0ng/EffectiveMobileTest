@@ -1,3 +1,5 @@
+rootProject.name = "EffectiveMobileTest"
+
 pluginManagement {
     repositories {
         google()
@@ -13,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "EffectiveMobileTest"
+
 include(":app")

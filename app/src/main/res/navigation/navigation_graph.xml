@@ -3,12 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/loginFragment">
+    <activity
+        android:id="@+id/activityRoot"
+        android:name="ru.madj0ng.effectivemobiletest.ui.RootActivity"
+        android:label="activity_root"
+        tools:layout="@layout/activity_root" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_vacancyDetailFragment"
             app:destination="@id/vacancyDetailFragment" />
@@ -22,7 +27,7 @@
         android:id="@+id/favoriteFragment"
         android:name="ru.madj0ng.effectivemobiletest.ui.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_vacancyDetailFragment"
             app:destination="@id/vacancyDetailFragment" />
@@ -42,4 +47,22 @@
         android:name="ru.madj0ng.effectivemobiletest.ui.VacancyDetailFragment"
         android:label="fragment_vacancy_detail"
         tools:layout="@layout/fragment_vacancy_detail" />
+    <fragment
+        android:id="@+id/confirmFragment"
+        android:name="ru.madj0ng.effectivemobiletest.ui.auth.ConfirmFragment"
+        android:label="fragment_confirm"
+        tools:layout="@layout/fragment_confirm">
+        <action
+            android:id="@+id/action_confirmFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.madj0ng.effectivemobiletest.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_confirmFragment"
+            app:destination="@id/confirmFragment" />
+    </fragment>
 </navigation>

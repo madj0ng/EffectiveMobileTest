@@ -20,7 +20,7 @@ import ru.madj0ng.effectivemobiletest.domain.favorite.FavoriteInteractor
 import ru.madj0ng.effectivemobiletest.domain.models.Resource
 
 class RootActivity : CurrenFavoriteCount, AppCompatActivity() {
-    private var bottomNavigationView: BottomNavigationView? = null
+    private val bottomNavigationView: BottomNavigationView by lazy { findViewById(R.id.bottomNavigationView) }
 
     private var notificationView: View? = null
     private var itemView: BottomNavigationItemView? = null
@@ -33,10 +33,9 @@ class RootActivity : CurrenFavoriteCount, AppCompatActivity() {
         setContentView(R.layout.activity_root)
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.rootFragmentContainerView) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.fcvMain) as NavHostFragment
         val navController = navHostFragment.navController
 
-        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView?.setupWithNavController(navController)
 
         itemView = bottomNavigationView?.getChildAt(1) as? BottomNavigationItemView
@@ -48,6 +47,16 @@ class RootActivity : CurrenFavoriteCount, AppCompatActivity() {
         lifecycleScope.launch {
             favoriteInteractor.getFavorites().collect {
                 if (it is Resource.Success) setFavoriteCount(it.size)
+            }
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment, R.id.confirmFragment, R.id.vacancyDetailFragment -> {
+                    bottomNavigationView.isVisible = false
+                }
+
+                else -> bottomNavigationView.isVisible = true
             }
         }
     }

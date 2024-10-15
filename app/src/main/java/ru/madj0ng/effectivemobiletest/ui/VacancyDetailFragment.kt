@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.mp.KoinPlatform
 import ru.madj0ng.effectivemobiletest.R
@@ -25,6 +27,8 @@ class VacancyDetailFragment : Fragment() {
     private val declination: NumericDeclination = KoinPlatform.getKoin().get()
     private var questionAdapter: QuestionAdapter? = null
 
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +44,10 @@ class VacancyDetailFragment : Fragment() {
         val vacancyId = requireArguments().getString(VACANCY_ID, "")
         viewModel.loadData(vacancyId)
 
+        bottomSheetBehavior = BottomSheetBehavior
+            .from(binding.standardBottomSheet)
+            .apply { state = BottomSheetBehavior.STATE_HIDDEN }
+
         questionAdapter = QuestionAdapter { }
 
         binding.rvQuestions.apply {
@@ -47,6 +55,31 @@ class VacancyDetailFragment : Fragment() {
                 LinearLayoutManager(requireContext())
             adapter = questionAdapter
         }
+
+        binding.ivBackButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.bRespondButton.setOnClickListener {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+//                        binding.overlay.visibility = View.GONE
+                    }
+
+                    else -> {
+//                        binding.overlay.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+        })
 
         viewModel.getVacancy().observe(viewLifecycleOwner, this::render)
         viewModel.getQuestion().observe(viewLifecycleOwner, this::render)

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "ru.madj0ng.effectivemobiletest"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdkVersion(libs.versions.compileSdk.get().toInt())
 
     defaultConfig {
         applicationId = "ru.madj0ng.effectivemobiletest"
@@ -80,5 +80,4 @@ dependencies {
     // image
     implementation(libs.glide)
     kapt(libs.glide.compiler)
-
 }
